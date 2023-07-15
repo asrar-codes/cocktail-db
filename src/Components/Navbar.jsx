@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, NavLink, Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -25,7 +25,6 @@ const Navbar = () => {
           </NavLink>
         </div>
       </nav>
-      <Outlet />
     </>
   );
 };

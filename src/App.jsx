@@ -1,19 +1,36 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./Pages/Layout";
+import About from "./Pages/About";
 import Home from "./Pages/Home";
-import Navbar from "./Components/Navbar";
-import SingleCocktail from "./Pages/singleCocktail";
+import Error from "./Pages/Error";
+import SingePageError from "./Pages/SingePageError";
 
 function App() {
+  // console.log(data);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      errorElement: <Error />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+          errorElement: <SingePageError />,
+        },
+        {
+          path: "about",
+          element: <About />,
+          errorElement: <SingePageError />,
+        },
+      ],
+    },
+  ]);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navbar />}>
-          <Route index element={<Home />} />
-          <Route path="cocktail/:id" element={<SingleCocktail />} />
-          <Route path="about" element={<h2>about</h2>} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 
